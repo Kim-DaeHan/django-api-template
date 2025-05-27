@@ -29,8 +29,6 @@ INSTALLED_APPS += [
     "django_extensions",  # 개발 도구
 ]
 
-# Email backend for development
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Cache (개발환경에서는 로컬 메모리 캐시 사용)
 CACHES = {

@@ -45,11 +45,22 @@ pip install -r requirements.txt
 `.env` 파일을 생성하고 다음 내용을 추가하세요:
 
 ```env
-SECRET_KEY=your-secret-key-here
+# Django 설정
+SECRET_KEY=django-insecure-change-this-in-production
 DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
-DATABASE_URL=postgresql://postgres:password@localhost:5432/social_api_dev
+ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+
+# 데이터베이스 설정
+DATABASE_URL=postgresql://hans:@localhost:5432/social_api_dev
+
+# Redis 설정 (프로덕션용)
+REDIS_URL=redis://127.0.0.1:6379/1
+
+# Sentry 설정 (모니터링, 프로덕션용)
+SENTRY_DSN=https://your-sentry-dsn-here
 ```
+
+> **참고**: 위의 DATABASE_URL에서 `hans`는 현재 시스템 사용자명입니다. 본인의 사용자명으로 변경하세요.
 
 ### 3. 데이터베이스 설정
 

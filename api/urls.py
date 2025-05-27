@@ -27,4 +27,5 @@ def api_root(request):
 
 urlpatterns = [
     path("", api_root, name="api-root"),
+    # 공통 API 엔드포인트들이 추가될 예정
 ]
