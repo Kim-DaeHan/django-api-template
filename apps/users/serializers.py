@@ -22,15 +22,24 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "email",
+            "username",
             "first_name",
             "last_name",
+            "nickname",
+            "phone_number",
+            "birth_date",
+            "bio",
+            "profile_image",
+            "is_verified",
             "is_active",
-            "date_joined",
+            "created_at",
+            "updated_at",
             "password",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
         }
+        read_only_fields = ["id", "created_at", "updated_at", "is_verified"]
 
     def create(self, validated_data):
         """
@@ -55,12 +64,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "user",
-            "bio",
-            "birth_date",
-            "phone_number",
-            "avatar",
             "website",
             "location",
+            "company",
+            "job_title",
+            "is_public",
+            "email_notifications",
+            "push_notifications",
             "created_at",
             "updated_at",
         ]

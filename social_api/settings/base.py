@@ -28,6 +28,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "corsheaders",
     "django_filters",
+    "drf_spectacular",
 ]
 
 LOCAL_APPS = [
@@ -131,6 +132,7 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.MultiPartParser",
         "rest_framework.parsers.FormParser",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 # CORS settings
@@ -142,6 +144,26 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# drf-spectacular settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Social API",
+    "DESCRIPTION": "소셜 미디어 플랫폼 API 문서",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": "/api/v1/",
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SORT_OPERATIONS": False,
+    "ENUM_NAME_OVERRIDES": {
+        "ValidationErrorEnum": "drf_spectacular.plumbing.ValidationErrorEnum.choices",
+    },
+    "POSTPROCESSING_HOOKS": ["drf_spectacular.hooks.postprocess_schema_enums"],
+    "TAGS": [
+        {"name": "users", "description": "사용자 관련 API"},
+        {"name": "posts", "description": "게시글 관련 API"},
+        {"name": "auth", "description": "인증 관련 API"},
+    ],
+}
 
 # Logging configuration
 LOGGING = {
